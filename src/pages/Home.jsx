@@ -14,26 +14,27 @@ const Home = () => {
     {
       icon: staffIcon,
       title: 'staff',
+      close: false,
     },
     {
       icon: balanceIcon,
       title: 'balance',
+      close: false,
     },
     {
       icon: notesIcon,
       title: 'notes',
+      close: false,
     },
     {
       icon: eventsIcon,
       title: 'events',
+      close: false,
     },
     {
       icon: blacklistIcon,
       title: 'blacklist',
-    },
-    {
-      icon: exitIcon,
-      title: 'exit',
+      close: false,
     },
   ];
 
@@ -42,9 +43,11 @@ const Home = () => {
       <Pagecard key={new Date().getTime()} {...obj} />
     </Link>
   ));
+
   return (
-  <div className={styles.content}>{pageCards}</div>
-  
+    <div className={styles.content}>
+      {pageCards} <Pagecard close={true} icon={exitIcon} title="exit" />
+    </div>
   );
 };
 

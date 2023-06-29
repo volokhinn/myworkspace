@@ -1,9 +1,19 @@
 import React from 'react';
 import styles from '../scss/components/_pageCard.module.scss';
 
-const pageCard = ({ icon, title }) => {
+const pageCard = ({ close, icon, title }) => {
+  const clickExit = () => {
+    if (close) {
+      let isClose = window.confirm('Вы уверены, что хотите выйти?');
+      if (isClose) {
+        window.open('', '_self').window.close();
+      }
+    }
+    window.opener = null;
+  };
+
   return (
-    <div className={styles.card}>
+    <div onClick={() => clickExit()} className={styles.card}>
       <img className={styles.icon} src={icon} alt={icon} />
       <span className={styles.title}>{title}</span>
     </div>
