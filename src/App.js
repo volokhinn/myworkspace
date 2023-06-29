@@ -5,7 +5,7 @@ import Events from './pages/Events';
 import Balance from './pages/Balance';
 import BlackList from './pages/BlackList';
 import Notes from './pages/Notes';
-import Staff from './pages/Staff';
+import Staff from './pages/Staff/Staff';
 import styles from './scss/index.module.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 

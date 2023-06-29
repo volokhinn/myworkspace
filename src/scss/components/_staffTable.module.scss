@@ -1,0 +1,97 @@
+.table {
+    width: 100%;
+
+    margin-top: 35px;
+
+    border-collapse: separate;
+    table-layout: fixed;
+    border-spacing: 0 30px; /* this is the ultimate fix */
+
+    & thead {
+        position: sticky;
+        position: -webkit-sticky;
+        border: 1px solid #FFF;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 30px;
+        outline: 1px solid #fff;
+        
+        & th:first-child {
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+        }
+
+        & th:last-child {
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;           
+        }
+
+        & th {
+            font-size: 1.6em;
+            font-weight: 500;
+            text-align: center;
+            padding: 35px 60px;
+
+            &:not(:last-child) {
+                border-right: 1px solid #fff;
+            }
+        }
+    }
+
+    & tbody {
+        & tr {
+            margin-bottom: 40px;
+            border-radius: 30px;
+            outline: 1px solid #FFF;
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        & tr td:first-child {
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+        }
+
+        & tr td:last-child {
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;           
+        }
+        & tr td {
+            text-align: center;
+            padding: 35px 60px;
+
+            font-size: 1.6em;
+            font-weight: 500;
+
+            &:first-child {
+                padding: 10px;;
+            }
+
+            &:not(:last-child) {
+                border-right: 1px solid #fff;
+            }
+        }
+    }
+}
+
+.add__row {
+    display: flex;
+    justify-content: center;
+}
+
+.add {
+    color: #fff;
+    font-size: 4.8em;
+    font-family: Montserrat Alternates;
+    font-weight: 300 !important;
+    text-decoration: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 0 30px 0;
+    padding: 20px 36px;
+
+    border-radius: 100%;
+    border: 1px solid #FFF;
+    background: rgba(255, 255, 255, 0.12);
+}
