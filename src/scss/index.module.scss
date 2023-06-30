@@ -4,7 +4,7 @@ body {
     background-size: 100%;
     color: #FFF;
     font-size: 10px;
-    font-family: Montserrat Alternates;
+    font-family: 'Inter', sans-serif;
 }
 
 .container {
@@ -14,8 +14,9 @@ body {
 
 .title {
     font-size: 3.6em;
+    font-family: Inter;
+    font-weight: 400;
     margin-top: unset;
-    margin-bottom: 45px;
 }
 
 .text {

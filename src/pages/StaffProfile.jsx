@@ -7,8 +7,8 @@ const StaffProfile = () => {
   return (
     <div className={styles.profile}>
       <div className={styles.left}>
-        <h2 className={`${index.title} ${styles.title}`}>Информация о сотруднике</h2>
         <div className={styles.info__top}>
+          <h2 className={index.title}>Информация о сотруднике</h2>
           <div className={styles.info}>
             <div className={styles.info_left}>
               <img className={styles.img} src={sokolov} alt={sokolov}></img>

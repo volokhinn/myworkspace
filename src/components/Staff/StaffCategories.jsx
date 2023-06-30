@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../../scss/components/_staffCategories.module.scss';
 
 const StaffCategories = (/* { value, onChangeCategory } */) => {
-  const categories = ['All', 'SMM', 'WEB', 'CONTEXT', 'DESIGN', 'TARGET'];
+  const categories = ['all', 'smm', 'web', 'context', 'design', 'target'];
 
   return (
     <ul className={styles.category__list}>
