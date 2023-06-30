@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(135deg, rgb(25, 69, 189) 0%, rgb(65, 27, 168) 33%, rgb(94, 14, 131) 66%, rgb(104, 18, 100) 100%);
+    background: #101010;
     background-repeat: no-repeat;
     background-size: 100%;
     color: #FFF;
@@ -10,4 +10,15 @@ body {
 .container {
     width: 1600px;
     margin: 0 auto;
+}
+
+.title {
+    font-size: 3.6em;
+    margin-top: unset;
+    margin-bottom: 45px;
+}
+
+.text {
+    font-size: 2.4em;
+    margin-bottom: 20px;
 }

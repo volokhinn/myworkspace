@@ -7,12 +7,6 @@
     display: flex;
     justify-content: space-between;
 
-    &__title {
-        font-size: 3.6em;
-        margin-top: unset;
-        margin-bottom: 45px;
-    }
-
     &__text {
         font-size: 2.4em;
         margin-bottom: 20px;
@@ -81,4 +75,12 @@
             margin-bottom: 20px;
         }
     }
+}
+
+.img {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: 2px solid #fff;
 }

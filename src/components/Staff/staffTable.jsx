@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../../scss/components/_staffTable.module.scss';
 
-import sokolov from '../../img/staff/sokolov.png';
+import sokolov from '../../img/staff/sokolov.jpg';
 
 const staffTable = () => {
   return (
@@ -22,7 +22,7 @@ const staffTable = () => {
         <tbody className={styles.table}>
           <tr>
             <td>
-              <img src={sokolov} alt={sokolov}></img>
+              <img className={styles.img} src={sokolov} alt={sokolov}></img>
             </td>
             <td>#1</td>
             <td>Alex Sokolov</td>
@@ -33,7 +33,7 @@ const staffTable = () => {
           </tr>
           <tr>
             <td>
-              <img src={sokolov} alt={sokolov}></img>
+              <img className={styles.img} src={sokolov} alt={sokolov}></img>
             </td>
             <td>#2</td>
             <td>Alex Sokolov</td>
@@ -44,7 +44,7 @@ const staffTable = () => {
           </tr>
           <tr>
             <td>
-              <img src={sokolov} alt={sokolov}></img>
+              <img className={styles.img} src={sokolov} alt={sokolov}></img>
             </td>
             <td>#3</td>
             <td>Alex Sokolov</td>
