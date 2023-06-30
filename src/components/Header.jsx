@@ -3,6 +3,7 @@ import styles from '../scss/components/_header.module.scss';
 import headerCalendar from '../icons/headerCalendar.svg';
 import headerClock from '../icons/headerClock.svg';
 import { useState, useEffect } from 'react';
+import { useHref } from 'react-router-dom';
 
 const Header = () => {
   const [dateState, setDateState] = useState(new Date());
@@ -12,7 +13,7 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <div className={styles.logo}>MYWORKSPACE</div>
+      <div className={styles.logo}>{useHref()}</div>
       <div className={styles.datetime}>
         <img src={headerCalendar} alt="calendar" />
         {dateState.toLocaleDateString('ru-RU', {

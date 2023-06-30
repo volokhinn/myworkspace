@@ -6,7 +6,7 @@ const pageCard = ({ close, icon, title }) => {
     if (close) {
       let isClose = window.confirm('Вы уверены, что хотите выйти?');
       if (isClose) {
-        window.open('', '_self').window.close();
+        window.close();
       }
     }
     window.opener = null;

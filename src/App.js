@@ -13,8 +13,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <div className={styles.container}>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="balance" element={<Balance />} />
@@ -22,7 +22,7 @@ function App() {
           <Route path="blacklist" element={<BlackList />} />
           <Route path="notes" element={<Notes />} />
           <Route path="staff" element={<Staff />} />
-          <Route path="staff/profile" element={<StaffProfile />} />
+          <Route path="staff/profile/:id" element={<StaffProfile />} />
         </Routes>
       </BrowserRouter>
     </div>

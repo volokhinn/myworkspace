@@ -4,7 +4,7 @@ import index from '../../scss/index.module.scss';
 import sokolov from '../../img/staff/sokolov.jpg';
 
 import StaffCategories from '../../components/Staff/StaffCategories';
-import StaffTable from '../../components/Staff/staffTable';
+import StaffTable from '../../components/Staff/StaffTable';
 
 const Staff = () => {
   return (
