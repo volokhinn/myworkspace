@@ -1,12 +1,14 @@
 import React from 'react';
 
 import styles from '../../scss/components/_staffTable.module.scss';
+import index from '../../scss/index.module.scss';
 
 import sokolov from '../../img/staff/sokolov.jpg';
 
 import { selectStaffData } from '../../redux/slices/staffSlice';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const StaffTable = () => {
   const navigate = useNavigate();
@@ -27,31 +29,37 @@ const StaffTable = () => {
           {staff.name} {staff.surname}
         </td>
         <td>{staff.position}</td>
-        <td>18</td>
-        <td>{staff.birthday.toLocaleDateString('ru-RU')}</td>
-        <td>11.04.1999</td>
+        <td>{new Date().getFullYear().toString() - staff.birthday.split('.')[2]}</td>
+        <td>{staff.birthday}</td>
+        <td>{staff.inviteDate.toLocaleDateString('ru-RU')}</td>
       </tr>
     );
   });
 
   return (
     <>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th>№</th>
-            <th>Фамилия Имя</th>
-            <th>Должность</th>
-            <th>Возраст</th>
-            <th>Дата рождения</th>
-            <th>Начало работы</th>
-          </tr>
-        </thead>
-        <tbody className={styles.table}>{trs}</tbody>
-      </table>
-      <div className={styles.add__row}>
-        <button className={styles.add}>+</button>
+      {trs.length ? (
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>№</th>
+              <th>Фамилия Имя</th>
+              <th>Должность</th>
+              <th>Возраст</th>
+              <th>Дата рождения</th>
+              <th>Начало работы</th>
+            </tr>
+          </thead>
+          <tbody className={styles.table}>{trs}</tbody>
+        </table>
+      ) : (
+        <div className={styles.notfound}>Нет сотрудников из этого отдела</div>
+      )}
+      <div className={index.row__center}>
+        <Link to="/staff/add-staff" style={{ textDecoration: 'none' }}>
+          <button className={styles.add}>+</button>
+        </Link>
       </div>
     </>
   );

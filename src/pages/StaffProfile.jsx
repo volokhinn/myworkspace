@@ -5,8 +5,7 @@ import '../scss/staffProfile.module.scss';
 import sokolov from '../img/staff/sokolov.jpg';
 import send from '../icons/send.svg';
 import dismiss from '../icons/dismiss.svg';
-
-import { useState, useEffect } from 'react';
+import Button from '../components/UI/Button';
 
 import { useParams } from 'react-router-dom';
 
@@ -15,8 +14,6 @@ import { useSelector } from 'react-redux';
 import { findStaffById } from '../redux/slices/staffSlice';
 
 const StaffProfile = () => {
-  const [click, setClick] = useState(0);
-
   const { id } = useParams();
 
   const staff = useSelector(findStaffById(+id));
@@ -51,15 +48,17 @@ const StaffProfile = () => {
               <div className={styles.info_right}>
                 <div className={index.text}>Имя: {staff.name}</div>
                 <div className={index.text}>Фамилия: {staff.surname}</div>
-                <div className={index.text}>Возраст: 18</div>
                 <div className={index.text}>
-                  Дата рождения: {staff.birthday.toLocaleDateString('ru-RU')}
+                  Возраст: {new Date().getFullYear().toString() - staff.birthday.split('.')[2]}
                 </div>
+                <div className={index.text}>Дата рождения: {staff.birthday}</div>
               </div>
             </div>
             <div className={index.text}>Отдел: {staff.department}</div>
             <div className={index.text}>Должность: {staff.position} </div>
-            <div className={index.text}>Работает в организации с 11.10.2001</div>
+            <div className={index.text}>
+              Работает в организации с {staff.inviteDate.toLocaleDateString('ru-RU')}
+            </div>
           </div>
           <div className={styles.info__bottom}>
             <h2 className={index.title}>Действия над сотрудником</h2>
@@ -79,16 +78,7 @@ const StaffProfile = () => {
                 <img src={send} alt={send}></img>
               </a>
             </div>
-            <a>
-              <div
-                className={styles.button}
-                onClick={() => setClick(1)}
-                /*onAnimationEnd={() => setClick(0)} */
-                click={click}>
-                <img src={dismiss} alt={dismiss}></img>
-                Уволить
-              </div>
-            </a>
+            <Button icon={dismiss}>Уволить</Button>
           </div>
         </div>
         <div className={styles.right}>

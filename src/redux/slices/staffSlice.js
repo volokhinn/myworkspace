@@ -8,11 +8,12 @@ const initialState = {
         'https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1380&t=st=1688123206~exp=1688123806~hmac=f6ee4a66b6cb5bbc670eb0808c516146fbdb8f1a7caecf346f850a6f71b0dbe4',
       name: 'Alex',
       surname: 'Sokolov',
-      birthday: new Date(),
+      birthday: '11.10.2001',
       department: 'WebDev',
       position: 'Web developer',
       isHead: false,
       isDismissed: false,
+      inviteDate: new Date(),
       activities: [
         {
           id: 1,
@@ -48,11 +49,12 @@ const initialState = {
         'https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1380&t=st=1688123206~exp=1688123806~hmac=f6ee4a66b6cb5bbc670eb0808c516146fbdb8f1a7caecf346f850a6f71b0dbe4',
       name: 'Alex',
       surname: 'Sokolov',
-      birthday: new Date(),
+      birthday: '11.10.2001',
       department: 'WebDev',
       position: 'Web developer',
       isHead: false,
       isDismissed: false,
+      inviteDate: new Date(),
       activities: [
         {
           id: 1,
@@ -90,6 +92,7 @@ export const staffSlice = createSlice({
     clearFilter(state, action) {
       state.filteringStaffs = state.staffs;
     },
+
     filterStaffsByCategory(state, action) {
       state.filteringStaffs = state.filteringStaffs.filter(
         (staff) => staff.department === action.payload,
