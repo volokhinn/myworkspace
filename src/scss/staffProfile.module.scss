@@ -128,7 +128,7 @@
     width: 500px;
     position: relative;
 
-    & a {
+    & button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -136,6 +136,8 @@
         border-radius: 100%;
         background-color: #fff;
         transition: .2s;
+
+        cursor: pointer;
 
         &:hover {
             background-color: #BFEE61;

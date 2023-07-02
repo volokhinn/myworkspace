@@ -23,6 +23,7 @@ export const staffSlice = createSlice({
       const dismissedStaff = state.staffs.find((staff) => staff.id === action.payload);
       if (dismissedStaff) {
         dismissedStaff.isDismissed = true;
+        dismissedStaff.isHead = false;
         dismissedStaff.dismissDate = new Date().toLocaleDateString('ru-RU');
         console.log(dismissedStaff.isDismissed);
       }
@@ -40,10 +41,35 @@ export const staffSlice = createSlice({
         isDismissed: false,
         imgUrl:
           'https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1380&t=st=1688285757~exp=1688286357~hmac=f88556b4d0514155383a7681f3c1ea952ea320dbca399d260f28dd06989c0b61',
-        activities: [],
+        activities: [
+          {
+            id: 1,
+            type: 'info',
+            text: 'Принят в организацию',
+            date: new Date().toLocaleDateString('ru-RU'),
+          },
+        ],
         inviteDate: new Date(),
         dismissDate: null,
       });
+      localStorage.setItem('staffs', JSON.stringify(state.staffs));
+    },
+
+    toggleHead(state, action) {
+      const staffHead = state.staffs.find((staff) => staff.id === action.payload);
+      if (!staffHead.isHead) {
+        staffHead.isHead = true;
+      } else {
+        staffHead.isHead = false;
+      }
+      localStorage.setItem('staffs', JSON.stringify(state.staffs));
+    },
+
+    addWarn(state, action) {
+      const warnStaff = state.staffs.find((staff) => staff.id === action.payload.id);
+      if (warnStaff) {
+        warnStaff.activities.push(action.payload.warn);
+      }
       localStorage.setItem('staffs', JSON.stringify(state.staffs));
     },
   },
@@ -51,6 +77,9 @@ export const staffSlice = createSlice({
 
 export const findAllByDismiss = (isDismissed) => (state) =>
   state.staffSlice.staffs.filter((staff) => staff.isDismissed === isDismissed);
+
+export const findAllHeads = (isHead) => (state) =>
+  state.staffSlice.staffs.filter((staff) => staff.isHead === isHead);
 
 export const findStaffById = (id) => (state) =>
   state.staffSlice.staffs.find((staff) => staff.id === id);
@@ -60,7 +89,14 @@ export const findHeadByDep = (department) => (state) =>
 
 export const selectStaffData = (state) => state.staffSlice;
 
-export const { clearFilter, filterStaffsByCategory, dissmission, fetchStaffs, addStaff } =
-  staffSlice.actions;
+export const {
+  clearFilter,
+  filterStaffsByCategory,
+  dissmission,
+  fetchStaffs,
+  addStaff,
+  toggleHead,
+  addWarn,
+} = staffSlice.actions;
 
 export default staffSlice.reducer;

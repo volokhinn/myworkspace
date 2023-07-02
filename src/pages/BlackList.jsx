@@ -47,7 +47,7 @@ const BlackList = () => {
           <tbody className={styles.table}>{trs}</tbody>
         </table>
       ) : (
-        <div className={styles.notfound}>Нет сотрудников из этого отдела</div>
+        <div className={styles.notfound}>Нет уволенных сотрудников</div>
       )}
     </>
   );

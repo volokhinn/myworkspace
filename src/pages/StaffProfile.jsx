@@ -7,18 +7,24 @@ import send from '../icons/send.svg';
 import dismiss from '../icons/dismiss.svg';
 import Button from '../components/UI/Button';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { findStaffById, dissmission, clearFilter } from '../redux/slices/staffSlice';
+import {
+  findStaffById,
+  dissmission,
+  clearFilter,
+  toggleHead,
+  addWarn,
+} from '../redux/slices/staffSlice';
 
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
 import { calculateAge } from '../Helpers/getAge';
 
 const StaffProfile = () => {
+  const [warn, setWarn] = useState('');
   const { id } = useParams();
 
   const staff = useSelector(findStaffById(+id));
@@ -30,6 +36,38 @@ const StaffProfile = () => {
   if (!staff) {
     return <div>не найдено :С</div>;
   }
+
+  const onClickDismiss = () => {
+    dispatch(dissmission(+staff.id));
+    dispatch(clearFilter());
+    setTimeout(() => {
+      navigate('/staff');
+    }, 300);
+  };
+
+  const onClickHead = () => {
+    dispatch(toggleHead(+staff.id));
+  };
+
+  const onChangeWarn = (e) => setWarn(e.target.value);
+
+  const onClickWarn = () => {
+    if (!warn) {
+      return;
+    }
+
+    const newWarn = {
+      id: new Date().getTime(),
+      type: 'warn',
+      text: warn,
+      date: new Date().toLocaleDateString('ru-RU'),
+    };
+
+    setWarn('');
+
+    dispatch(addWarn({ id: +staff.id, warn: newWarn }));
+    dispatch(clearFilter());
+  };
 
   const activities = staff.activities.map((activity) => {
     return (
@@ -43,14 +81,6 @@ const StaffProfile = () => {
       </div>
     );
   });
-
-  const onClickDismiss = () => {
-    dispatch(dissmission(+staff.id));
-    dispatch(clearFilter());
-    setTimeout(() => {
-      navigate('/staff');
-    }, 300);
-  };
 
   return (
     <>
@@ -72,7 +102,10 @@ const StaffProfile = () => {
               </div>
             </div>
             <div className={index.text}>Отдел: {staff.department}</div>
-            <div className={index.text}>Должность: {staff.position} </div>
+            <div className={index.text}>
+              Должность:{' '}
+              {staff.isHead ? `Руководитель отдела ${staff.department}` : `${staff.position}`}{' '}
+            </div>
             <div className={index.text}>
               Работает в организации с {new Date(staff.inviteDate).toLocaleDateString('ru-RU')}
             </div>
@@ -80,20 +113,48 @@ const StaffProfile = () => {
           <div className={styles.info__bottom}>
             <h2 className={index.title}>Действия над сотрудником</h2>
             <div className={styles.checkbox}>
-              <label className={styles.switch} htmlFor="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div className={`${styles.slider} ${styles.round}`}></div>
-              </label>
-              <label className={index.label}>
-                Назначить руководителем отдела {staff.department}
-              </label>
+              {!staff.isHead ? (
+                <>
+                  <label className={styles.switch} htmlFor="checkbox">
+                    <input
+                      onClick={onClickHead}
+                      type="checkbox"
+                      id="checkbox"
+                      defaultChecked={false}
+                    />
+                    <div className={`${styles.slider} ${styles.round}`}></div>
+                  </label>
+                  <label className={index.label}>
+                    Назначить руководителем отдела {staff.department}
+                  </label>
+                </>
+              ) : (
+                <>
+                  <label className={styles.switch} htmlFor="checkbox">
+                    <input
+                      onClick={onClickHead}
+                      type="checkbox"
+                      id="checkbox"
+                      defaultChecked={true}
+                    />
+                    <div className={`${styles.slider} ${styles.round}`}></div>
+                  </label>
+                  <label className={index.label}>
+                    Снять руководство отделом {staff.department}
+                  </label>
+                </>
+              )}
             </div>
 
             <div className={styles.input}>
-              <input type="text" placeholder="Выдать предупреждение"></input>
-              <a href="/">
+              <input
+                type="text"
+                placeholder="Выдать предупреждение"
+                value={warn}
+                onChange={onChangeWarn}></input>
+              <button onClick={onClickWarn}>
                 <img src={send} alt={send}></img>
-              </a>
+              </button>
             </div>
             <Button onClick={() => onClickDismiss()} icon={dismiss}>
               Уволить

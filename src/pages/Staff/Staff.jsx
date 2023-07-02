@@ -6,15 +6,24 @@ import sokolov from '../../img/staff/sokolov.jpg';
 import StaffCategories from '../../components/Staff/StaffCategories';
 import StaffTable from '../../components/Staff/StaffTable';
 
-import { findAllByDismiss } from '../../redux/slices/staffSlice';
+import { clearFilter, findAllByDismiss, findAllHeads } from '../../redux/slices/staffSlice';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { calculateAge } from '../../Helpers/getAge';
 import { normalizeCount } from '../../Helpers/normalizeCount';
 
+import { useEffect, dispatch } from 'react';
+
 const Staff = () => {
   const staffs = useSelector(findAllByDismiss(false));
+  const staffsHeads = useSelector(findAllHeads(true));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearFilter());
+  }, []);
 
   const avgAge = () => {
     return Math.ceil(
@@ -24,6 +33,18 @@ const Staff = () => {
       }, 0) / (staffs.length || 1),
     );
   };
+
+  const heads = staffsHeads.map((staffHead) => {
+    return (
+      <div className={styles.main__staff_person}>
+        <img className={styles.img} src={staffHead.imgUrl} alt={staffHead.imgUrl}></img>
+        <div className={styles.main__staff_text}>
+          {staffHead.name} {staffHead.surname}
+        </div>
+        <div className={styles.main__staff_text}>Руководитель {staffHead.department}</div>
+      </div>
+    );
+  });
 
   return (
     <>
@@ -61,11 +82,7 @@ const Staff = () => {
               <div className={styles.main__staff_text}>Denis Volostnov</div>
               <div className={styles.main__staff_text}>Операционный директор</div>
             </div>
-            {/* <div className={styles.main__staff_person}>
-              <img className={styles.img} src={sokolov} alt={sokolov}></img>
-              <div className={styles.main__staff_text}>Alex Sokolov</div>
-              <div className={styles.main__staff_text}>Руководитель WebDev</div>
-            </div> */}
+            {heads}
           </div>
         </div>
       </div>
