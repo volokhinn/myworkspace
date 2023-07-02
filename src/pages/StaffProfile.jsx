@@ -11,12 +11,21 @@ import { useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
-import { findStaffById } from '../redux/slices/staffSlice';
+import { findStaffById, dissmission, clearFilter } from '../redux/slices/staffSlice';
+
+import { useDispatch } from 'react-redux';
+
+import { useNavigate } from 'react-router-dom';
+import { calculateAge } from '../Helpers/getAge';
 
 const StaffProfile = () => {
   const { id } = useParams();
 
   const staff = useSelector(findStaffById(+id));
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   if (!staff) {
     return <div>не найдено :С</div>;
@@ -25,7 +34,7 @@ const StaffProfile = () => {
   const activities = staff.activities.map((activity) => {
     return (
       <div key={activity.id} className={styles.actions}>
-        <div className={styles.actions__date}>{activity.date.toLocaleDateString('ru-RU')}</div>
+        <div className={styles.actions__date}>{activity.date}</div>
 
         <div className={styles.actions__text}>
           {activity.type === 'warn' ? 'Предупреждение: ' : ''}
@@ -34,6 +43,14 @@ const StaffProfile = () => {
       </div>
     );
   });
+
+  const onClickDismiss = () => {
+    dispatch(dissmission(+staff.id));
+    dispatch(clearFilter());
+    setTimeout(() => {
+      navigate('/staff');
+    }, 300);
+  };
 
   return (
     <>
@@ -48,16 +65,16 @@ const StaffProfile = () => {
               <div className={styles.info_right}>
                 <div className={index.text}>Имя: {staff.name}</div>
                 <div className={index.text}>Фамилия: {staff.surname}</div>
+                <div className={index.text}>Возраст: {calculateAge(new Date(staff.birthday))}</div>
                 <div className={index.text}>
-                  Возраст: {new Date().getFullYear().toString() - staff.birthday.split('.')[2]}
+                  Дата рождения: {new Date(staff.birthday).toLocaleDateString('ru-RU')}
                 </div>
-                <div className={index.text}>Дата рождения: {staff.birthday}</div>
               </div>
             </div>
             <div className={index.text}>Отдел: {staff.department}</div>
             <div className={index.text}>Должность: {staff.position} </div>
             <div className={index.text}>
-              Работает в организации с {staff.inviteDate.toLocaleDateString('ru-RU')}
+              Работает в организации с {new Date(staff.inviteDate).toLocaleDateString('ru-RU')}
             </div>
           </div>
           <div className={styles.info__bottom}>
@@ -78,7 +95,9 @@ const StaffProfile = () => {
                 <img src={send} alt={send}></img>
               </a>
             </div>
-            <Button icon={dismiss}>Уволить</Button>
+            <Button onClick={() => onClickDismiss()} icon={dismiss}>
+              Уволить
+            </Button>
           </div>
         </div>
         <div className={styles.right}>

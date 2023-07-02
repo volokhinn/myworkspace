@@ -108,9 +108,9 @@
     syntax: '<number>';
     inherits: true;
     initial-value: 0;
-  }
+}
 
-@-webkit-keyframes diagramm { from { --p:0 } to { --p:60 }  }
-   @-moz-keyframes diagramm { from { --p:0 } to { --p:60 }  }
-     @-o-keyframes diagramm { from { --p:0 } to { --p:60 }  }
-        @keyframes diagramm { from { --p:0 } to { --p:60 }  }
+@-webkit-keyframes diagramm { from { --p:0 } to { --p: 60}  }
+   @-moz-keyframes diagramm { from { --p:0 } to { --p: 60 }  }
+     @-o-keyframes diagramm { from { --p:0 } to { --p: 60 }  }
+        @keyframes diagramm { from { --p:0 } to { --p: 60 }  }

@@ -38,9 +38,9 @@ const Home = () => {
     },
   ];
 
-  const pageCards = pageCardValues.map((obj) => (
-    <Link style={{ textDecoration: 'none' }} key={new Date().getTime()} to={obj.title}>
-      <Pagecard key={new Date().getTime()} {...obj} />
+  const pageCards = pageCardValues.map((obj, i) => (
+    <Link key={i} style={{ textDecoration: 'none' }} to={obj.title}>
+      <Pagecard {...obj} />
     </Link>
   ));
 

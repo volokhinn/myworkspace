@@ -10,15 +10,13 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import { calculateAge } from '../../Helpers/getAge';
+
 const StaffTable = () => {
   const navigate = useNavigate();
   const { filteringStaffs } = useSelector(selectStaffData);
 
   const trs = filteringStaffs.map((staff, i) => {
-    if (staff.isDismissed) {
-      return false;
-    }
-
     return (
       <tr onClick={() => navigate(`/staff/profile/${staff.id}`)} key={staff.id}>
         <td>
@@ -29,9 +27,9 @@ const StaffTable = () => {
           {staff.name} {staff.surname}
         </td>
         <td>{staff.position}</td>
-        <td>{new Date().getFullYear().toString() - staff.birthday.split('.')[2]}</td>
-        <td>{staff.birthday}</td>
-        <td>{staff.inviteDate.toLocaleDateString('ru-RU')}</td>
+        <td>{calculateAge(new Date(staff.birthday))}</td>
+        <td>{new Date(staff.birthday).toLocaleDateString('ru-RU')}</td>
+        <td>{new Date(staff.inviteDate).toLocaleDateString('ru-RU')}</td>
       </tr>
     );
   });

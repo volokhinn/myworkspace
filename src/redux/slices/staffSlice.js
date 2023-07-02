@@ -1,105 +1,56 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  staffs: [
-    {
-      id: 1,
-      imgUrl:
-        'https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1380&t=st=1688123206~exp=1688123806~hmac=f6ee4a66b6cb5bbc670eb0808c516146fbdb8f1a7caecf346f850a6f71b0dbe4',
-      name: 'Alex',
-      surname: 'Sokolov',
-      birthday: '11.10.2001',
-      department: 'WebDev',
-      position: 'Web developer',
-      isHead: false,
-      isDismissed: false,
-      inviteDate: new Date(),
-      activities: [
-        {
-          id: 1,
-          text: 'Опоздал',
-          type: 'warn',
-          date: new Date(),
-        },
-        {
-          id: 2,
-          text: 'Принят в организацию',
-          type: 'info',
-          date: new Date(),
-        },
-        {
-          id: 3,
-          text: 'Опоздал',
-          type: 'warn',
-          date: new Date(),
-        },
-        {
-          id: 4,
-          text: 'Принят в организацию',
-          type: 'info',
-          date: new Date(),
-        },
-      ],
-    },
-  ],
-  filteringStaffs: [
-    {
-      id: 1,
-      imgUrl:
-        'https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1380&t=st=1688123206~exp=1688123806~hmac=f6ee4a66b6cb5bbc670eb0808c516146fbdb8f1a7caecf346f850a6f71b0dbe4',
-      name: 'Alex',
-      surname: 'Sokolov',
-      birthday: '11.10.2001',
-      department: 'WebDev',
-      position: 'Web developer',
-      isHead: false,
-      isDismissed: false,
-      inviteDate: new Date(),
-      activities: [
-        {
-          id: 1,
-          text: 'Опоздал',
-          type: 'warn',
-          date: new Date(),
-        },
-        {
-          id: 2,
-          text: 'Принят в организацию',
-          type: 'info',
-          date: new Date(),
-        },
-        {
-          id: 3,
-          text: 'Опоздал',
-          type: 'warn',
-          date: new Date(),
-        },
-        {
-          id: 4,
-          text: 'Принят в организацию',
-          type: 'info',
-          date: new Date(),
-        },
-      ],
-    },
-  ],
+  staffs: [],
+  filteringStaffs: [],
 };
 
 export const staffSlice = createSlice({
   name: 'staff',
   initialState,
   reducers: {
-    clearFilter(state, action) {
-      state.filteringStaffs = state.staffs;
+    clearFilter(state) {
+      state.filteringStaffs = state.staffs.filter((staff) => !staff.isDismissed);
     },
 
     filterStaffsByCategory(state, action) {
       state.filteringStaffs = state.filteringStaffs.filter(
-        (staff) => staff.department === action.payload,
+        (staff) => staff.department === action.payload && !staff.isDismissed,
       );
+    },
+
+    dissmission(state, action) {
+      const dismissedStaff = state.staffs.find((staff) => staff.id === action.payload);
+      if (dismissedStaff) {
+        dismissedStaff.isDismissed = true;
+        dismissedStaff.dismissDate = new Date().toLocaleDateString('ru-RU');
+        console.log(dismissedStaff.isDismissed);
+      }
+      localStorage.setItem('staffs', JSON.stringify(state.staffs));
+    },
+
+    fetchStaffs(state) {
+      state.staffs = JSON.parse(localStorage.getItem('staffs') ?? '[]');
+    },
+
+    addStaff(state, action) {
+      state.staffs.push({
+        ...action.payload,
+        isHead: false,
+        isDismissed: false,
+        imgUrl:
+          'https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1380&t=st=1688285757~exp=1688286357~hmac=f88556b4d0514155383a7681f3c1ea952ea320dbca399d260f28dd06989c0b61',
+        activities: [],
+        inviteDate: new Date(),
+        dismissDate: null,
+      });
+      localStorage.setItem('staffs', JSON.stringify(state.staffs));
     },
   },
 });
+
+export const findAllByDismiss = (isDismissed) => (state) =>
+  state.staffSlice.staffs.filter((staff) => staff.isDismissed === isDismissed);
 
 export const findStaffById = (id) => (state) =>
   state.staffSlice.staffs.find((staff) => staff.id === id);
@@ -109,6 +60,7 @@ export const findHeadByDep = (department) => (state) =>
 
 export const selectStaffData = (state) => state.staffSlice;
 
-export const { clearFilter, filterStaffsByCategory } = staffSlice.actions;
+export const { clearFilter, filterStaffsByCategory, dissmission, fetchStaffs, addStaff } =
+  staffSlice.actions;
 
 export default staffSlice.reducer;

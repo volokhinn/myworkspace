@@ -7,10 +7,58 @@ import done from '../../icons/done.svg';
 
 import Button from '../../components/UI/Button';
 
+import { useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+
+import { addStaff, clearFilter } from '../../redux/slices/staffSlice';
+
+import { useNavigate } from 'react-router-dom';
+
 const depsArray = ['SMM', 'WebDev', 'Design', 'Context', 'Target'];
 
 const AddStaff = () => {
-  window.scrollTo(0, 0);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // window.scrollTo(0, 0);
+
+  const [name, setName] = useState('');
+  const [surname, setSurName] = useState('');
+  const [birthday, setBirthday] = useState('');
+  const [depart, setDepart] = useState('SMM');
+  const [position, setPosition] = useState('');
+
+  const onNameChanged = (e) => setName(e.target.value);
+  const onSurNameChanged = (e) => setSurName(e.target.value);
+  const onBirthdayChanged = (e) => setBirthday(e.target.value);
+  const onPositionChange = (e) => setPosition(e.target.value);
+
+  const onSubmit = () => {
+    if (!name && !surname && !birthday && !position) {
+      return;
+    }
+    const newStaff = {
+      id: new Date().getTime(),
+      name,
+      surname,
+      birthday: new Date(Date.parse(birthday)),
+      department: depart,
+      position,
+    };
+    dispatch(addStaff(newStaff));
+    dispatch(clearFilter());
+    setTimeout(() => {
+      navigate('/staff');
+    }, 300);
+  };
+  const onChangeDep = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setDepart(value);
+      console.log(e.target.value);
+    }
+  };
 
   return (
     <div className={styles.main}>
@@ -20,27 +68,46 @@ const AddStaff = () => {
         <label className={styles.photo__label}>+</label>
       </div>
 
-      <div className={styles.field}>
+      <form className={styles.field}>
         <label className={styles.field__label}>Имя</label>
-        <input type="text" className={styles.field__input} placeholder="Введите имя" />
+        <input
+          type="text"
+          className={styles.field__input}
+          placeholder="Введите имя"
+          value={name}
+          onChange={onNameChanged}
+        />
         <label className={styles.field__label}>Фамилия</label>
-        <input type="text" className={styles.field__input} placeholder="Введите фамилию" />
+        <input
+          type="text"
+          className={styles.field__input}
+          placeholder="Введите фамилию"
+          onChange={onSurNameChanged}
+          value={surname}
+        />
         <label className={styles.field__label}>Дата рождения</label>
-        <input type="text" className={styles.field__input} placeholder="дд.мм.гггг" />
+        <input
+          type="text"
+          className={styles.field__input}
+          placeholder="дд.мм.гггг"
+          value={birthday}
+          onChange={onBirthdayChanged}
+        />
         <label className={styles.field__label}>Отдел</label>
         <div>
           {depsArray.map((dep) => {
             return (
-              <div className={styles.field__radio_group}>
+              <div key={dep} className={styles.field__radio_group}>
                 <input
-                  key={dep + '4'}
                   className={styles.field__radio}
                   type="radio"
                   name="dep_radio"
                   value={dep}
                   id={dep}
+                  checked={depart === dep}
+                  onChange={onChangeDep}
                 />
-                <label key={dep} className={styles.field__radio_label} htmlFor={dep}>
+                <label className={styles.field__radio_label} htmlFor={dep}>
                   {dep}
                 </label>
               </div>
@@ -49,12 +116,20 @@ const AddStaff = () => {
         </div>
 
         <label className={styles.field__label}>Должность</label>
-        <input type="text" className={styles.field__input} placeholder="Введите должность" />
+        <input
+          type="text"
+          className={styles.field__input}
+          placeholder="Введите должность"
+          value={position}
+          onChange={onPositionChange}
+        />
 
         <div className={index.row__center}>
-          <Button icon={done}>Добавить</Button>
+          <Button onClick={onSubmit} icon={done}>
+            Добавить
+          </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

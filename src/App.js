@@ -10,8 +10,18 @@ import StaffProfile from './pages/StaffProfile';
 import AddStaff from './pages/Staff/AddStaff';
 import styles from './scss/index.module.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { fetchStaffs, clearFilter } from './redux/slices/staffSlice';
 
 function App() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchStaffs());
+    dispatch(clearFilter());
+  }, []);
+
   return (
     <div className={styles.container}>
       <BrowserRouter>
