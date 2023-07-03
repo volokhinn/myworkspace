@@ -1,0 +1,69 @@
+.card {
+    border-radius: 30px;
+    background: #333;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 100%;
+}
+
+.text {
+    color: #FFF;
+    font-size: 2.4em;
+    font-family: Inter;
+    font-weight: 400;
+    
+    margin-bottom: 60px;
+    overflow-wrap: break-word;
+    pointer-events: none;
+}
+
+.icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+
+    & img {
+        cursor: pointer;
+    }
+}
+
+.textarea {
+    border-radius: 30px;
+    background: #1E1E1E;
+    outline: none;
+    border: none;
+    resize: none;
+    padding: 30px;
+    width: calc(100% - 60px);
+    margin: 30px 0;
+
+    color: #FFF;
+    font-size: 2.4em;
+    font-family: Inter;
+    font-weight: 400;
+    min-height: 200px;
+
+    overflow: auto;
+    overflow-x: hidden;
+
+    
+    &::-webkit-scrollbar-track{
+        background-color: transparent;
+        cursor: grab;
+    }
+    
+    &::-webkit-scrollbar{
+        width: 2px;
+        background-color: transparent;
+        cursor: grab;
+    }
+    
+    &::-webkit-scrollbar-thumb{
+        border-radius: 100px;
+        background-color: #BFEE61;
+        cursor: grab;
+    }
+}

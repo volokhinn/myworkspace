@@ -42,7 +42,7 @@ const AddStaff = () => {
       id: new Date().getTime(),
       name,
       surname,
-      birthday: new Date(Date.parse(birthday)),
+      birthday: new Date(Date.parse(birthday)).toLocaleDateString('ru-RU'),
       department: depart,
       position,
     };

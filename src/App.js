@@ -13,12 +13,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { fetchStaffs, clearFilter } from './redux/slices/staffSlice';
+import { fetchNotes } from './redux/slices/noteSlice';
 
 function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(fetchStaffs());
+    dispatch(fetchNotes());
     dispatch(clearFilter());
   }, []);
 

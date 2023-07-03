@@ -25,7 +25,6 @@ export const staffSlice = createSlice({
         dismissedStaff.isDismissed = true;
         dismissedStaff.isHead = false;
         dismissedStaff.dismissDate = new Date().toLocaleDateString('ru-RU');
-        console.log(dismissedStaff.isDismissed);
       }
       localStorage.setItem('staffs', JSON.stringify(state.staffs));
     },
@@ -49,10 +48,10 @@ export const staffSlice = createSlice({
             date: new Date().toLocaleDateString('ru-RU'),
           },
         ],
-        inviteDate: new Date(),
+        inviteDate: new Date().toLocaleDateString('ru-RU'),
         dismissDate: null,
       });
-      localStorage.setItem('staffs', JSON.stringify(state.staffs));
+      localStorage.setItem('staffs', JSON.stringify(state.staffs) ?? '[]');
     },
 
     toggleHead(state, action) {
@@ -62,7 +61,7 @@ export const staffSlice = createSlice({
       } else {
         staffHead.isHead = false;
       }
-      localStorage.setItem('staffs', JSON.stringify(state.staffs));
+      localStorage.setItem('staffs', JSON.stringify(state.staffs) ?? '[]');
     },
 
     addWarn(state, action) {
@@ -70,7 +69,11 @@ export const staffSlice = createSlice({
       if (warnStaff) {
         warnStaff.activities.push(action.payload.warn);
       }
-      localStorage.setItem('staffs', JSON.stringify(state.staffs));
+      localStorage.setItem('staffs', JSON.stringify(state.staffs) ?? '[]');
+    },
+
+    clearStaffs(state) {
+      localStorage.removeItem('staffs', JSON.stringify(state.staffs) ?? '[]');
     },
   },
 });
@@ -97,6 +100,7 @@ export const {
   addStaff,
   toggleHead,
   addWarn,
+  clearStaffs,
 } = staffSlice.actions;
 
 export default staffSlice.reducer;

@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom';
 
 import { calculateAge } from '../../Helpers/getAge';
 
+import AddButton from '../UI/AddButton';
+
 const StaffTable = () => {
   const navigate = useNavigate();
   const { filteringStaffs } = useSelector(selectStaffData);
@@ -56,7 +58,7 @@ const StaffTable = () => {
       )}
       <div className={index.row__center}>
         <Link to="/staff/add-staff" style={{ textDecoration: 'none' }}>
-          <button className={styles.add}>+</button>
+          <AddButton size="100px" fontSize="4.8em" />
         </Link>
       </div>
     </>

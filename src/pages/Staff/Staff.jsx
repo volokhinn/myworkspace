@@ -64,9 +64,11 @@ const Staff = () => {
               Средний возраст сотрудников: {avgAge()}{' '}
               {normalizeCount(avgAge(), ['год', 'года', 'лет'])}
             </div>
-            {/* <div className={index.text}>Средний возраст сотрудников: 44 года</div>
-            <div className={index.text}>Средний возраст сотрудников: 44 года</div>
-            <div className={index.text}>Средний возраст сотрудников: 44 года</div> */}
+            <div className={index.text}>Количество сотрудников в отделе SMM: </div>
+            <div className={index.text}>Количество сотрудников в отделе WebDev: </div>
+            <div className={index.text}>Количество сотрудников в отделе Context: </div>
+            <div className={index.text}>Количество сотрудников в отделе Design: </div>
+            <div className={index.text}>Количество сотрудников в отделе Target: </div>
           </div>
         </div>
         <div className={styles.main__right}>
