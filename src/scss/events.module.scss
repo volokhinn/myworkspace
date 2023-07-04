@@ -1,0 +1,128 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+
+    margin-bottom: 60px;
+    
+    &__left {
+        border-radius: 20px;
+        background: #BFEE61;
+        width: 430px;
+        color: #000;
+        font-size: 4em;
+        font-weight: 500;
+        height: 100%;
+        gap: 30px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 30px;
+
+
+        &_info {
+            font-size: 3em;
+        }
+    }
+
+    &__right {
+        border-radius: 20px;
+        background: #1E1E1E;
+        padding: 30px 30px 0 30px;
+        display: flex;
+        flex-direction: column;
+        width: 1000px;
+    }
+}
+
+.fields {
+    display: flex;
+    justify-content: space-between;
+
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        & input {
+            border-radius: 30px;
+            background: #333;
+            border: none;
+            outline: none;
+            padding: 15px 30px;
+            color: #FFF;
+            font-size: 2.4em;
+
+            &::placeholder {
+                color: #FFF;
+                font-size: 1em;
+                font-family: Inter !important;
+                font-weight: 300 !important;
+            }
+        }
+    }
+}
+
+.textarea {
+    border-radius: 30px;
+    background: #333;
+    padding: 30px;
+    resize: none;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 2.4em;
+    min-width: 450px;
+
+    &::-webkit-scrollbar-track{
+        background-color: transparent;
+        cursor: grab;
+    }
+    
+    &::-webkit-scrollbar{
+        width: 2px;
+        background-color: transparent;
+        cursor: grab;
+    }
+    
+    &::-webkit-scrollbar-thumb{
+        border-radius: 100px;
+        background-color: #BFEE61;
+        cursor: grab;
+    }
+
+    &::placeholder {
+        color: #FFF;
+        font-size: 1em;
+        font-family: Inter !important;
+        font-weight: 300 !important;
+    }
+}
+
+.emoji {
+    border-radius: 20px;
+    background: #333;
+    width: calc(100% - 35px);
+    padding: 20px;
+    margin: 30px 0;
+    font-size: 3.4em;
+
+    &__input {
+        display: none;
+    }
+
+    &__label {
+        cursor: pointer;
+        margin-right: 18px;
+    }
+}
+
+.cards {
+    display: flex;
+    gap: 65px;
+    flex-wrap: wrap;
+}
