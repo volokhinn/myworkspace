@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from '../../scss/staff.module.scss';
 import index from '../../scss/index.module.scss';
-import sokolov from '../../img/staff/sokolov.jpg';
+import denis from '../../img/staff/denis.jpg';
+import ivan from '../../img/staff/ivan.jpg';
 
 import StaffCategories from '../../components/Staff/StaffCategories';
 import StaffTable from '../../components/Staff/StaffTable';
@@ -13,11 +14,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { calculateAge } from '../../Helpers/getAge';
 import { normalizeCount } from '../../Helpers/normalizeCount';
 
-import { useEffect, dispatch } from 'react';
+import { useEffect } from 'react';
 
 const Staff = () => {
   const staffs = useSelector(findAllByDismiss(false));
   const staffsHeads = useSelector(findAllHeads(true));
+
+  const staffsLength = staffs.length;
 
   const dispatch = useDispatch();
 
@@ -54,7 +57,8 @@ const Staff = () => {
             <div className={styles.main__left_info}>
               <div className={styles.main__left_info_number}>{staffs.length}</div>
               <div className={styles.main__left_info_text}>
-                сотрудников в <br></br> организации
+                {normalizeCount(staffsLength, ['сотрудник', 'сотрудника', 'сотрудников'])} в{' '}
+                <br></br> организации
               </div>
             </div>
           </div>
@@ -75,12 +79,12 @@ const Staff = () => {
           <h2 className={index.title}>Информация о руководителях</h2>
           <div className={styles.main__staff}>
             <div className={styles.main__staff_person}>
-              <img className={styles.img} src={sokolov} alt={sokolov}></img>
+              <img className={styles.img} src={ivan} alt={ivan}></img>
               <div className={styles.main__staff_text}>Ivan Tsybulnik</div>
               <div className={styles.main__staff_text}>Основатель</div>
             </div>
             <div className={styles.main__staff_person}>
-              <img className={styles.img} src={sokolov} alt={sokolov}></img>
+              <img className={styles.img} src={denis} alt={denis}></img>
               <div className={styles.main__staff_text}>Denis Volostnov</div>
               <div className={styles.main__staff_text}>Операционный директор</div>
             </div>

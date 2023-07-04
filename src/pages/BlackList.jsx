@@ -13,7 +13,7 @@ const BlackList = () => {
 
   const trs = allDis.map((staff, i) => {
     return (
-      <tr key={staff.id}>
+      <tr key={staff.id} style={{ cursor: 'default' }}>
         <td>
           <img className={styles.img} src={staff.imgUrl} alt={sokolov}></img>
         </td>

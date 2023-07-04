@@ -13,13 +13,11 @@ export const noteSlice = createSlice({
         id: new Date().getTime(),
         text: action.payload,
       });
-      console.log(action.payload);
       localStorage.setItem('notes', JSON.stringify(state.notes) ?? '[]');
     },
 
     removeNote(state, action) {
       state.notes = state.notes.filter((notes) => notes.id !== action.payload.id);
-      console.log(action.payload.id);
       localStorage.setItem('notes', JSON.stringify(state.notes) ?? '[]');
     },
 
@@ -28,7 +26,7 @@ export const noteSlice = createSlice({
       if (card) {
         card.text = action.payload.area;
       }
-      console.log(action.payload.area);
+      localStorage.setItem('notes', JSON.stringify(state.notes) ?? '[]');
     },
 
     fetchNotes(state) {
