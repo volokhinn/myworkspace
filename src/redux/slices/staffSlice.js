@@ -24,6 +24,7 @@ export const staffSlice = createSlice({
       if (dismissedStaff) {
         dismissedStaff.isDismissed = true;
         dismissedStaff.isHead = false;
+        dismissedStaff.department = '';
         dismissedStaff.dismissDate = new Date().toLocaleDateString('ru-RU');
       }
       localStorage.setItem('staffs', JSON.stringify(state.staffs));
@@ -89,6 +90,11 @@ export const findStaffById = (id) => (state) =>
 
 export const findHeadByDep = (department) => (state) =>
   state.staffSlice.staffs.find((staff) => staff.department === department && staff.isHead);
+
+export const findStaffByDep = (department) => (state) =>
+  state.staffSlice.staffs.filter((staff) => staff.department === department);
+
+export const getLengthStaffsByDep = (department) => findStaffByDep(department).length;
 
 export const selectStaffData = (state) => state.staffSlice;
 

@@ -21,8 +21,11 @@ const StaffCategories = () => {
   };
 
   const onClickClear = () => {
-    dispatch(clearStaffs());
-    window.location.reload();
+    if (window.confirm('Вы уверены, что хотите очистить список ВСЕХ сотрудников?')) {
+      dispatch(clearStaffs());
+      window.location.reload();
+    }
+    return;
   };
 
   return (

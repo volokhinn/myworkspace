@@ -17,8 +17,11 @@ const Notes = () => {
   ));
 
   const onClickClear = () => {
-    dispatch(clearNotes());
-    window.location.reload();
+    if (window.confirm('Вы уверены, что хотите очистить список ВСЕХ заметок?')) {
+      dispatch(clearNotes());
+      window.location.reload();
+    }
+    return;
   };
 
   return (

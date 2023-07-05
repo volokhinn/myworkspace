@@ -16,13 +16,11 @@ export const eventSlice = createSlice({
         time: action.payload.time,
         emoji: action.payload.emoji,
       });
-      console.log(action.payload);
       localStorage.setItem('events', JSON.stringify(state.events) ?? '[]');
     },
 
     removeEvent(state, action) {
       state.events = state.events.filter((events) => events.id !== action.payload.id);
-      console.log(action.payload.id);
       localStorage.setItem('events', JSON.stringify(state.events) ?? '[]');
     },
 

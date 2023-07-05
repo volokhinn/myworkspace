@@ -115,6 +115,12 @@ body {
     margin-top: 50px;
 
     cursor: pointer;
+
+    transition: .1s;
+
+    &:hover {
+        color: #c4c4c4;
+    }
 }
 
 .add {

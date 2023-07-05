@@ -7,7 +7,12 @@ import ivan from '../../img/staff/ivan.jpg';
 import StaffCategories from '../../components/Staff/StaffCategories';
 import StaffTable from '../../components/Staff/StaffTable';
 
-import { clearFilter, findAllByDismiss, findAllHeads } from '../../redux/slices/staffSlice';
+import {
+  clearFilter,
+  findAllByDismiss,
+  findAllHeads,
+  findStaffByDep,
+} from '../../redux/slices/staffSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -18,7 +23,14 @@ import { useEffect } from 'react';
 
 const Staff = () => {
   const staffs = useSelector(findAllByDismiss(false));
+
   const staffsHeads = useSelector(findAllHeads(true));
+
+  const staffSMM = useSelector(findStaffByDep('SMM')).length;
+  const staffWebDev = useSelector(findStaffByDep('WebDev')).length;
+  const staffContext = useSelector(findStaffByDep('Context')).length;
+  const staffDesign = useSelector(findStaffByDep('Design')).length;
+  const staffTarget = useSelector(findStaffByDep('Target')).length;
 
   const staffsLength = staffs.length;
 
@@ -68,11 +80,26 @@ const Staff = () => {
               Средний возраст сотрудников: {avgAge()}{' '}
               {normalizeCount(avgAge(), ['год', 'года', 'лет'])}
             </div>
-            <div className={index.text}>Количество сотрудников в отделе SMM: </div>
-            <div className={index.text}>Количество сотрудников в отделе WebDev: </div>
-            <div className={index.text}>Количество сотрудников в отделе Context: </div>
-            <div className={index.text}>Количество сотрудников в отделе Design: </div>
-            <div className={index.text}>Количество сотрудников в отделе Target: </div>
+            <div className={index.text}>
+              Отдел SMM: {staffSMM}{' '}
+              {normalizeCount(staffSMM, ['сотрудник', 'сотрудника', 'сотрудников'])}
+            </div>
+            <div className={index.text}>
+              Отдел WebDev: {staffWebDev}{' '}
+              {normalizeCount(staffWebDev, ['сотрудник', 'сотрудника', 'сотрудников'])}
+            </div>
+            <div className={index.text}>
+              Отдел Context: {staffContext}{' '}
+              {normalizeCount(staffContext, ['сотрудник', 'сотрудника', 'сотрудников'])}
+            </div>
+            <div className={index.text}>
+              Отдел Design: {staffDesign}{' '}
+              {normalizeCount(staffDesign, ['сотрудник', 'сотрудника', 'сотрудников'])}
+            </div>
+            <div className={index.text}>
+              Отдел Target: {staffTarget}{' '}
+              {normalizeCount(staffTarget, ['сотрудник', 'сотрудника', 'сотрудников'])}
+            </div>
           </div>
         </div>
         <div className={styles.main__right}>

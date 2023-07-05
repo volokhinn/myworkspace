@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import { fetchStaffs, clearFilter } from './redux/slices/staffSlice';
 import { fetchNotes } from './redux/slices/noteSlice';
 import { fetchEvents } from './redux/slices/eventSlice';
+import { fetchMoney } from './redux/slices/balanceSlice';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
     dispatch(fetchStaffs());
     dispatch(fetchNotes());
     dispatch(fetchEvents());
+    dispatch(fetchMoney());
     dispatch(clearFilter());
   }, []);
 

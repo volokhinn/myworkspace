@@ -76,8 +76,11 @@ const Events = () => {
   };
 
   const onClickClear = () => {
-    dispatch(clearEvents());
-    window.location.reload();
+    if (window.confirm('Вы уверены, что хотите очистить список ВСЕХ мероприятий?')) {
+      dispatch(clearEvents());
+      window.location.reload();
+    }
+    return;
   };
 
   const emojiArray = [
