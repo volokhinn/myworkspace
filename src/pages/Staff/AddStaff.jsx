@@ -56,7 +56,6 @@ const AddStaff = () => {
     const { value, checked } = e.target;
     if (checked) {
       setDepart(value);
-      console.log(e.target.value);
     }
   };
 
