@@ -10,10 +10,11 @@ const StaffTable = () => {
   const { money } = useSelector(selectBalanceData);
 
   const trs = money.map((balance, i) => {
+    const sum = +balance.sum;
     return (
       <tr key={balance.id} style={{ cursor: 'default' }}>
         <td>{balance.type}</td>
-        <td>{balance.sum} ₽</td>
+        <td>{sum.toLocaleString('ru-RU')} ₽</td>
         <td>{balance.text}</td>
         <td>{balance.date}</td>
       </tr>

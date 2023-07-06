@@ -3,6 +3,7 @@ import styles from '../../scss/staff.module.scss';
 import index from '../../scss/index.module.scss';
 import denis from '../../img/staff/denis.jpg';
 import ivan from '../../img/staff/ivan.jpg';
+import anna from '../../img/staff/anna.jpg';
 
 import StaffCategories from '../../components/Staff/StaffCategories';
 import StaffTable from '../../components/Staff/StaffTable';
@@ -31,6 +32,8 @@ const Staff = () => {
   const staffContext = useSelector(findStaffByDep('Context')).length;
   const staffDesign = useSelector(findStaffByDep('Design')).length;
   const staffTarget = useSelector(findStaffByDep('Target')).length;
+  const staffManagment = useSelector(findStaffByDep('Managment')).length;
+  const staffSEO = useSelector(findStaffByDep('SEO')).length;
 
   const staffsLength = staffs.length;
 
@@ -100,6 +103,14 @@ const Staff = () => {
               Отдел Target: {staffTarget}{' '}
               {normalizeCount(staffTarget, ['сотрудник', 'сотрудника', 'сотрудников'])}
             </div>
+            <div className={index.text}>
+              Отдел SEO: {staffSEO}{' '}
+              {normalizeCount(staffManagment, ['сотрудник', 'сотрудника', 'сотрудников'])}
+            </div>
+            <div className={index.text}>
+              Отдел Managment: {staffManagment}{' '}
+              {normalizeCount(staffSEO, ['сотрудник', 'сотрудника', 'сотрудников'])}
+            </div>
           </div>
         </div>
         <div className={styles.main__right}>
@@ -108,6 +119,11 @@ const Staff = () => {
             <div className={styles.main__staff_person}>
               <img className={styles.img} src={ivan} alt={ivan}></img>
               <div className={styles.main__staff_text}>Ivan Tsybulnik</div>
+              <div className={styles.main__staff_text}>Основатель</div>
+            </div>
+            <div className={styles.main__staff_person}>
+              <img className={styles.img} src={anna} alt={anna}></img>
+              <div className={styles.main__staff_text}>Anna Tsybulnik</div>
               <div className={styles.main__staff_text}>Основатель</div>
             </div>
             <div className={styles.main__staff_person}>

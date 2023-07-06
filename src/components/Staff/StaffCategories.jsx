@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import WhiteButton from '../UI/WhiteButton';
 
 const StaffCategories = () => {
-  const categories = ['All', 'SMM', 'WebDev', 'Context', 'Design', 'Target'];
+  const categories = ['All', 'SMM', 'WebDev', 'Context', 'Design', 'Target', 'SEO', 'Managment'];
 
   const [value, setValue] = React.useState('All');
 

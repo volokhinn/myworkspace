@@ -19,7 +19,7 @@ const Header = () => {
     <div className={styles.header}>
       <div className={styles.logo}>
         <Link to="/" style={{ textDecoration: 'none', color: '#fff' }}>
-          MYWORKSPACE
+          <span className={styles.logo__span}>DMA</span> WORKSPACE
         </Link>
       </div>
       {useHref() === '/' ? (

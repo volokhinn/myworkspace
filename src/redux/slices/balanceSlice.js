@@ -9,7 +9,7 @@ export const balanceSlice = createSlice({
   initialState,
   reducers: {
     addMoney(state, action) {
-      state.money.push({
+      state.money.unshift({
         id: new Date().getTime(),
         type: action.payload.type,
         sum: action.payload.money,
@@ -20,7 +20,7 @@ export const balanceSlice = createSlice({
     },
 
     deleteMoney(state, action) {
-      state.money.push({
+      state.money.unshift({
         id: new Date().getTime(),
         type: action.payload.type,
         sum: action.payload.money,
@@ -50,8 +50,24 @@ export const balanceSlice = createSlice({
 });
 
 export const selectBalanceData = (state) => state.balanceSlice;
+
 export const selectBalanceDeposit = (state) =>
   state.balanceSlice.money.filter((balance) => balance.type === 'пополнение');
+
+export const selectBalance = (state) => {
+  const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  const balances = [];
+  for (const month of months) {
+    const balanceDeposit = state.balanceSlice.money
+      .filter((item) => item.type === 'пополнение' && item.date.slice(3, -5) === month)
+      .reduce((acc, item) => acc + +item.sum, 0);
+    const balanceWithdraw = state.balanceSlice.money
+      .filter((item) => item.type === 'вывод' && item.date.slice(3, -5) === month)
+      .reduce((acc, item) => acc + +item.sum, 0);
+    balances.push(balanceDeposit - balanceWithdraw);
+  }
+  return balances;
+};
 
 export const selectBalanceWithdrawal = (state) =>
   state.balanceSlice.money.filter((balance) => balance.type === 'вывод');

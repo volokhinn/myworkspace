@@ -82,6 +82,11 @@
         background: #1E1E1E;
         width: 50%;
         padding: 30px;
+
+        &_title {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     // &__staff {
@@ -107,10 +112,10 @@
     initial-value: 0;
 }
 
-@-webkit-keyframes diagramm { from { --p:0 } to { --p: 60}  }
-   @-moz-keyframes diagramm { from { --p:0 } to { --p: 60 }  }
-     @-o-keyframes diagramm { from { --p:0 } to { --p: 60 }  }
-        @keyframes diagramm { from { --p:0 } to { --p: 60 }  }
+@-webkit-keyframes diagramm { from { --p:0 } to { --p: 100}  }
+   @-moz-keyframes diagramm { from { --p:0 } to { --p: 100 }  }
+     @-o-keyframes diagramm { from { --p:0 } to { --p: 100 }  }
+        @keyframes diagramm { from { --p:0 } to { --p: 100 }  }
 
 .fields {
     margin-top: 60px;

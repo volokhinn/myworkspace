@@ -15,8 +15,9 @@ import {
 import { useRef } from 'react';
 import WhiteButton from '../components/UI/WhiteButton';
 import { useSelector } from 'react-redux';
-
 import { abbreviate_number } from '../Helpers/abbreviateNumber';
+
+import BarChart from '../components/Charts/Chart';
 
 const Balance = () => {
   const dispatch = useDispatch();
@@ -104,7 +105,7 @@ const Balance = () => {
             </div>
           </div>
           <div className={styles.main__left_bottom}>
-            <h2 className={index.title}>Информация о доходах</h2>
+            <h2 className={index.title}>Информация о средствах</h2>
             <div className={styles.main__left_bottom_text}>
               Пополнения за все время: {countDeposit.toLocaleString('ru-RU')} ₽
             </div>
@@ -114,7 +115,11 @@ const Balance = () => {
           </div>
         </div>
         <div className={styles.main__right}>
-          <h2 className={index.title}>Прибыль по месяцам</h2>
+          <div className={styles.main__right_title}>
+            <h2 className={index.title}>Прибыль по месяцам</h2>
+            <span className={index.title}>2023</span>
+          </div>
+          <BarChart />
         </div>
       </div>
       <div className={styles.fields}>

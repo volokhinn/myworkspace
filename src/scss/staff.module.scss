@@ -49,7 +49,7 @@
                 position: absolute;
                 border-radius: 50%;
                 inset:-10px;
-                background: conic-gradient(#fff calc(var(--p)*1%),#0000 0);
+                background: conic-gradient(#000 calc(var(--p)*1%),#fff 0);
                 -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - 5%),#000 calc(100% - 5%));
                         mask:radial-gradient(farthest-side,#0000 calc(99% - 5%),#000 calc(100% - 5%));
                         -webkit-animation: 2s ease-in 0s diagramm both;
@@ -97,8 +97,8 @@
 }
 
 .img {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     border-radius: 100%;
     object-fit: cover;
     border: 2px solid #fff;
@@ -110,7 +110,7 @@
     initial-value: 0;
 }
 
-@-webkit-keyframes diagramm { from { --p:0 } to { --p: 60}  }
-   @-moz-keyframes diagramm { from { --p:0 } to { --p: 60 }  }
-     @-o-keyframes diagramm { from { --p:0 } to { --p: 60 }  }
-        @keyframes diagramm { from { --p:0 } to { --p: 60 }  }
+@-webkit-keyframes diagramm { from { --p:0 } to { --p: 100}  }
+   @-moz-keyframes diagramm { from { --p:0 } to { --p: 100 }  }
+     @-o-keyframes diagramm { from { --p:0 } to { --p: 100 }  }
+        @keyframes diagramm { from { --p:0 } to { --p: 100 }  }

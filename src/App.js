@@ -16,6 +16,7 @@ import { fetchStaffs, clearFilter } from './redux/slices/staffSlice';
 import { fetchNotes } from './redux/slices/noteSlice';
 import { fetchEvents } from './redux/slices/eventSlice';
 import { fetchMoney } from './redux/slices/balanceSlice';
+import { ScrollToTop } from 'react-router-scroll-to-top';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
   return (
     <div className={styles.container}>
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

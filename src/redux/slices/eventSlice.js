@@ -9,7 +9,7 @@ export const eventSlice = createSlice({
   initialState,
   reducers: {
     addEvent(state, action) {
-      state.events.push({
+      state.events.unshift({
         id: action.payload.id,
         text: action.payload.text,
         date: action.payload.date,

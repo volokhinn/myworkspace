@@ -15,7 +15,7 @@ import { addStaff, clearFilter } from '../../redux/slices/staffSlice';
 
 import { useNavigate } from 'react-router-dom';
 
-const depsArray = ['SMM', 'WebDev', 'Design', 'Context', 'Target'];
+const depsArray = ['SMM', 'WebDev', 'Design', 'Context', 'Target', 'SEO', 'Managment'];
 
 const AddStaff = () => {
   const dispatch = useDispatch();
@@ -38,11 +38,12 @@ const AddStaff = () => {
     if (!name && !surname && !birthday && !position) {
       return;
     }
+    console.log(new Date(birthday));
     const newStaff = {
       id: new Date().getTime(),
       name,
       surname,
-      birthday: new Date(Date.parse(birthday)).toLocaleDateString('ru-RU'),
+      birthday: new Date(Date.parse(birthday)),
       department: depart,
       position,
     };
@@ -86,7 +87,7 @@ const AddStaff = () => {
         />
         <label className={styles.field__label}>Дата рождения</label>
         <input
-          type="text"
+          type="date"
           className={styles.field__input}
           placeholder="дд.мм.гггг"
           value={birthday}

@@ -35,12 +35,12 @@ export const staffSlice = createSlice({
     },
 
     addStaff(state, action) {
-      state.staffs.push({
+      state.staffs.unshift({
         ...action.payload,
         isHead: false,
         isDismissed: false,
         imgUrl:
-          'https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1380&t=st=1688285757~exp=1688286357~hmac=f88556b4d0514155383a7681f3c1ea952ea320dbca399d260f28dd06989c0b61',
+          'https://cdn-icons-png.flaticon.com/512/727/727399.png?w=826&t=st=1688542551~exp=1688543151~hmac=23a84327479838450e0208891778baca318cb30cc65416fb26acd4f4924c91e6',
         activities: [
           {
             id: 1,
@@ -68,7 +68,7 @@ export const staffSlice = createSlice({
     addWarn(state, action) {
       const warnStaff = state.staffs.find((staff) => staff.id === action.payload.id);
       if (warnStaff) {
-        warnStaff.activities.push(action.payload.warn);
+        warnStaff.activities.unshift(action.payload.warn);
       }
       localStorage.setItem('staffs', JSON.stringify(state.staffs) ?? '[]');
     },
