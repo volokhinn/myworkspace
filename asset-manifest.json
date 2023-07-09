@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/myworkspace/static/css/main.9f5a08ac.css",
+    "main.js": "/myworkspace/static/js/main.8ea04117.js",
+    "static/media/sokolov.jpg": "/myworkspace/static/media/sokolov.f60b6ad49504ff31e7ab.jpg",
+    "static/media/anna.jpg": "/myworkspace/static/media/anna.f5026f59bf92344453d1.jpg",
+    "static/media/ivan.jpg": "/myworkspace/static/media/ivan.1f12f3f367b6a1a42982.jpg",
+    "static/media/denis.jpg": "/myworkspace/static/media/denis.0b73c85f75f6c4280066.jpg",
+    "static/media/blacklisticon.svg": "/myworkspace/static/media/blacklisticon.c0ec30f70466f895b3a3b40a6341a755.svg",
+    "static/media/exiticon.svg": "/myworkspace/static/media/exiticon.650a3ab5950a4578a6391313deec7961.svg",
+    "static/media/balanceicon.svg": "/myworkspace/static/media/balanceicon.b91667dee94b0aca1f53e3ab51b5f05f.svg",
+    "static/media/eventsicon.svg": "/myworkspace/static/media/eventsicon.54a3d7c896bac7327fc74351df82ac50.svg",
+    "static/media/staffIcon.svg": "/myworkspace/static/media/staffIcon.7ee0d9ee872a8635b4e11f0128ec2878.svg",
+    "static/media/notesicon.svg": "/myworkspace/static/media/notesicon.d05715dcc22f34c208345ba9b755f1c9.svg",
+    "static/media/dismiss.svg": "/myworkspace/static/media/dismiss.d2831c2b95990bc403e8cec223bd8a9f.svg",
+    "index.html": "/myworkspace/index.html",
+    "static/media/delete.svg": "/myworkspace/static/media/delete.b55b59911c35953938ca67e297affa14.svg",
+    "static/media/send.svg": "/myworkspace/static/media/send.c82b45cd1a44b34e9ebfab07000eb538.svg",
+    "static/media/headerCalendar.svg": "/myworkspace/static/media/headerCalendar.e30c996a533c3004da38219dc1664637.svg",
+    "static/media/done.svg": "/myworkspace/static/media/done.9e8872225cd8ed9ace63849a1fb94705.svg",
+    "static/media/headerClock.svg": "/myworkspace/static/media/headerClock.5cbd420ca4e4b9746ab82c71d2544c3d.svg",
+    "static/media/done2.svg": "/myworkspace/static/media/done2.387b9113872caa3b1bc64fbadf042e54.svg",
+    "static/media/edit.svg": "/myworkspace/static/media/edit.46482afbc02677326ba5b34cd69fe886.svg",
+    "main.9f5a08ac.css.map": "/myworkspace/static/css/main.9f5a08ac.css.map",
+    "main.8ea04117.js.map": "/myworkspace/static/js/main.8ea04117.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9f5a08ac.css",
+    "static/js/main.8ea04117.js"
+  ]
+}
